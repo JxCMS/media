@@ -12,7 +12,7 @@ var Controller_Main = require('../../../system/controller').Controller_Main,
 
 (function(){
 
-    var Controller = exports.Controller = new Class({
+    var Controller = exports.Controller = new( new Class({
 
         Extends: Controller_Main,
 
@@ -27,10 +27,11 @@ var Controller_Main = require('../../../system/controller').Controller_Main,
             return promise;
         }
 
-    });
+    }))();
 
     exports.routes = [
-        ['media','GET /media/(\\w*)(\\.\\w{2,})', ['file','type'], new Controller(),{action: 'index'}]
+        ['media','GET /media/(\\w*)(\\.\\w{2,})', ['file','type'], Controller,{action: 'index'}],
+        ['favicon','GET /favicon.ico',null,Controller,{action: 'index', file: 'favicon', type: '.ico'}]
     ]
 
 })();
