@@ -1,14 +1,14 @@
 /**
- * main file for loader module
+ * main file for media module
  *
- * Loader is used to concatenate javascript and css files for use on the browser. This is a
- * port of jxLoader's kohana module (sort of) as well as the base jxLoader class from PHP.
+ * 
  */
 
 /**
  * Dependencies
  */
-var routes = require('./controllers/media').routes;
+var routes = require('./controllers/media').routes,
+    controller = require('./controllers/media').Controller;
 
 //use a closure so we don't pollute the global namespace
 (function(){
@@ -18,28 +18,24 @@ exports.init = function(db, router){
     //load and intialize the loader controller
     //setup routing
     router.add(routes);
+    controller.setModule(exports);
     return true;
 };
 
 
-//also needs an activate method - used to activate the module after installation
-exports.activate = function(){
-
-}
-
-//and a deactivate method - removes anything we added to make the module not work anymore
-exports.deactivate = function(){
-
-    //call deinit
-    deinit();
-}
-
 /**
- * deinit undoes any initialization  (specifically the routing)
+ * Other methods exposed for others to use go here
  */
-function deinit() {
+ 
+var paths = [];
 
-}
+exports.registerPath = function(path){
+    paths.push(path);    
+};
+
+exports.getPaths = function(){
+    return paths;
+};
 
 /**
  * From here down are specific functions that this module will need
