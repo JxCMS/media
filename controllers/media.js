@@ -32,25 +32,25 @@ var Controller_Main = require('../../../system/controller').Controller_Main,
             var p = this.findFile('images', request.getParam('file'), request.getParam('ext'));
             
             core.debug('path returned from findFile()', p);
-            this.view.set('filepath', p);
+            response.view.set('filepath', p);
         },
         
         file_action: function (request, response) {
             var p = this.findFile('file', request.getParam('file'), request.getParam('ext'));
             
-            this.view.set('filepath', p);
+            response.view.set('filepath', p);
         },
         
         js_action: function (request, response) {
             var p = this.findFile('js', request.getParam('file'), request.getParam('ext'));
             
-            this.view.set('filepath', p);
+            response.view.set('filepath', p);
         },
         
         css_action: function (request, response) {
             var p = this.findFile('css', request.getParam('file'), request.getParam('ext'));
             
-            this.view.set('filepath', p);
+            response.view.set('filepath', p);
         },
         
         
@@ -77,8 +77,8 @@ var Controller_Main = require('../../../system/controller').Controller_Main,
     }))();
 
     exports.routes = [
-        ['media','GET /media/(\\w*)/(\\w*)(\\.\\w{2,})', ['action','file','ext'], Controller,{format: 'file'}],
+        ['media','GET /media/(\\w*)/([\\w\\-]*)(\\.\\w{2,})', ['action','file','ext'], Controller,{format: 'file'}],
         ['favicon','GET /favicon.ico',null,Controller,{action: 'images', format: 'file', file: 'favicon', ext: '.ico'}]
     ];
-
+    
 })();
