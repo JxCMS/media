@@ -20,7 +20,7 @@ var Controller_Main = require('../../../system/controller').Controller_Main,
         index_action: function(request, response) {
             var promise = new Promise();
             
-            core.log('In index_action() of media controller');
+            core.info('In index_action() of media controller');
 
             //do work here
 
@@ -63,10 +63,10 @@ var Controller_Main = require('../../../system/controller').Controller_Main,
                 var s = pathToCheck + '/' + folder + '/' + file + ext;
                 core.debug('checking path', s);
                 if (nil(p) && path.existsSync(s)) {
-                    core.log('\tfile exists');
+                    core.info('\tfile exists');
                     p = s;
                 } else {
-                    core.log('\tfile does not exist');
+                    core.info('\tfile does not exist');
                 }
             }, this);
             

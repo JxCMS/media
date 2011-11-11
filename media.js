@@ -14,7 +14,7 @@ var routes = require('./controllers/media').routes,
 (function(){
 
 //needs to have an init() method for setting up the module
-exports.init = function(db, router){
+exports.init = function(router, domain, options){
     //load and intialize the loader controller
     //setup routing
     router.add(routes);
